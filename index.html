@@ -106,7 +106,6 @@
         <button id="nextBtn">Next →</button>
     </div>
 
-    <script src="https://code.responsivevoice.org/responsivevoice.js"></script>
     <script>
         const dropdown = document.createElement("select");
         dropdown.id = "wordListDropdown";
@@ -184,10 +183,13 @@
         });
 
         function pronounceWord(word) {
-            if (typeof responsiveVoice !== "undefined") {
-                responsiveVoice.speak(word, "Russian Female");
+            const synth = window.speechSynthesis;
+            if (synth) {
+                const utterance = new SpeechSynthesisUtterance(word);
+                utterance.lang = "ru-RU"; // Set language to Russian
+                synth.speak(utterance);
             } else {
-                console.error("ResponsiveVoice library is not loaded.");
+                console.error("Web Speech API is not supported in this browser.");
             }
         }
 
@@ -198,7 +200,7 @@
             soundIcon.style.cursor = "pointer";
             soundIcon.style.marginLeft = "10px";
             soundIcon.addEventListener("click", function() {
-                responsiveVoice.speak(document.getElementById("word").innerText, "Russian Female");
+                pronounceWord(document.getElementById("word").innerText);
             });
             pronunciationElement.appendChild(soundIcon);
         }
