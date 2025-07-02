@@ -87,6 +87,12 @@
         button:hover {
             background-color: #4a6fb5;
         }
+        #speakBtn {
+            font-size: 14px;
+            position: absolute;
+            top: 30px;
+            left: 10px;
+        }
 
     </style>
 </head>
@@ -95,7 +101,7 @@
     <div class="card" id="flashcard">
         <div class="front" id="word">Слово</div>
         <div class="back">
-            <div class="pronunciation" id="pronunciation">Slovo</div>
+            <div class="pronunciation" id="pronunciation">Slovo</div><span id="speakBtn">🗣️</span>
             <div class="definition" id="definition">Word</div>
         </div>
     </div>
@@ -175,9 +181,17 @@
             });
 
             document.getElementById("shuffleBtn").addEventListener("click", function() {
-                shuffledWords = shuffleArray([...words]);
-                currentIndex = 0;
-                showWord();
+                
+                document.getElementById("flashcard").classList.remove("flipped");
+                this.disabled = true; // Disable the button
+                
+                setTimeout(() => {
+                    shuffledWords = shuffleArray([...words]);
+                    currentIndex = 0;
+                    showWord();
+                    this.disabled = false; // Enable the button
+                }, 500); // Delay of 500ms
+                
             });
 
             dropdown.addEventListener("change", function() {
@@ -199,6 +213,10 @@
                 } else {
                     alphabetContainer.style.display = "none";
                 }
+            });
+            document.getElementById("speakBtn").addEventListener("click", function() {
+                pronounceWord(shuffledWords[currentIndex].display);
+                console.log("Pronouncing word:", shuffledWords[currentIndex].display);
             });
         });
 
@@ -247,8 +265,6 @@
         alphabetContainer.style.marginTop = "20px";
         document.body.appendChild(alphabetContainer);
 */
-       
-            
     </script>
 
 </body>
