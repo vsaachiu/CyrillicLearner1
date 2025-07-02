@@ -93,6 +93,21 @@
             top: 30px;
             left: 10px;
         }
+        .wrapper {
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin-top: 20px;
+            width: 90%;
+            background-color: #fff;
+        }
+
+        #alphabetContainer{
+            display: none; /* Initially hidden */
+            
+        }
 
     </style>
 </head>
@@ -112,7 +127,9 @@
         <button id="toggleCyrillic">Show/hide Alphabet</button>
         <button id="nextBtn">Next →</button>
     </div>
-    <div id="alphabetContainer" class="alphabetContainer"></div>
+    <div class="wrapper">
+        <div id="alphabetContainer" class="alphabetContainer"></div>
+    </div>
 
     <script>
         const dropdown = document.createElement("select");
@@ -230,22 +247,6 @@
                 console.error("Web Speech API is not supported in this browser.");
             }
         }
-
-        function addSoundIcon() {
-            const pronunciationElement = document.getElementById("pronunciation");
-            const soundIcon = document.createElement("span");
-            soundIcon.innerHTML = "🔊";
-            soundIcon.style.cursor = "pointer";
-            soundIcon.style.marginLeft = "10px";
-            soundIcon.addEventListener("click", function() {
-                pronounceWord(shuffledWords[currentIndex].display);
-                console.log("Pronouncing word:", shuffledWords[currentIndex].display);
-            });
-            pronunciationElement.appendChild(soundIcon);
-        }
-
-        // Call the function to add the sound icon
-        addSoundIcon();
 
         // Load default word list
         loadWords("russian.json");
