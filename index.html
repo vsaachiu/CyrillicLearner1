@@ -137,7 +137,8 @@
         async function loadWords(file) {
             const response = await fetch(file);
             const data = await response.json();
-            shuffledWords = shuffleArray(data);
+            words = data; // Store the loaded words in the global variable
+            shuffledWords = shuffleArray(words);
             currentIndex = 0;
             showWord();
         }
