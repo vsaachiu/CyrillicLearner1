@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Learn Russian Words</title>
+    <title>Learn Cyrillic Alphabet</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -212,6 +212,28 @@
         // Initial shuffle and word display
         shuffledWords = shuffleArray([...words]);
         showWord();
+
+        const toggleAlphabetButton = document.createElement("button");
+        toggleAlphabetButton.innerText = "Toggle Cyrillic Alphabet";
+        toggleAlphabetButton.style.marginTop = "20px";
+        document.body.appendChild(toggleAlphabetButton);
+
+        const alphabetContainer = document.createElement("div");
+        alphabetContainer.id = "alphabetContainer";
+        alphabetContainer.style.display = "none";
+        alphabetContainer.style.marginTop = "20px";
+        document.body.appendChild(alphabetContainer);
+
+        toggleAlphabetButton.addEventListener("click", async function() {
+            if (alphabetContainer.style.display === "none") {
+                const response = await fetch("cyrillic.html");
+                const alphabetHTML = await response.text();
+                alphabetContainer.innerHTML = alphabetHTML;
+                alphabetContainer.style.display = "block";
+            } else {
+                alphabetContainer.style.display = "none";
+            }
+        });
     </script>
 
 </body>
