@@ -103,8 +103,10 @@
     <div class="buttons">
         <button id="prevBtn">← Previous</button>
         <button id="shuffleBtn">Shuffle</button>
+        <button id="toggleCyrillic">Show/hide Alphabet</button>
         <button id="nextBtn">Next →</button>
     </div>
+    <div id="alphabetContainer" class="alphabetContainer"></div>
 
     <script>
         const dropdown = document.createElement("select");
@@ -147,39 +149,56 @@
             document.getElementById("definition").innerText = word.definition;
             document.getElementById("flashcard").classList.remove("flipped");
         }
+        document.addEventListener("DOMContentLoaded", function() {
 
-        document.getElementById("flashcard").addEventListener("click", function() {
-            this.classList.toggle("flipped");
-        });
 
-        document.getElementById("nextBtn").addEventListener("click", function() {
-            document.getElementById("flashcard").classList.remove("flipped");
-            this.disabled = true; // Disable the button
-            setTimeout(() => {
-                currentIndex = (currentIndex + 1) % shuffledWords.length;
+            document.getElementById("flashcard").addEventListener("click", function(event) {
+                if (event.target.tagName !== "SPAN") { // Prevent flipping when clicking on the sound icon
+                    this.classList.toggle("flipped");
+                }
+            });
+
+            document.getElementById("nextBtn").addEventListener("click", function() {
+                document.getElementById("flashcard").classList.remove("flipped");
+                this.disabled = true; // Disable the button
+                setTimeout(() => {
+                    currentIndex = (currentIndex + 1) % shuffledWords.length;
+                    showWord();
+                    this.disabled = false; // Enable the button
+                }, 500); // Delay of 500ms
+            });
+
+            document.getElementById("prevBtn").addEventListener("click", function() {
+                currentIndex = (currentIndex - 1 + shuffledWords.length) % shuffledWords.length;
                 showWord();
-                this.disabled = false; // Enable the button
-            }, 500); // Delay of 500ms
-        });
+            });
 
-        document.getElementById("prevBtn").addEventListener("click", function() {
-            currentIndex = (currentIndex - 1 + shuffledWords.length) % shuffledWords.length;
-            showWord();
-        });
+            document.getElementById("shuffleBtn").addEventListener("click", function() {
+                shuffledWords = shuffleArray([...words]);
+                currentIndex = 0;
+                showWord();
+            });
 
-        document.getElementById("shuffleBtn").addEventListener("click", function() {
-            shuffledWords = shuffleArray([...words]);
-            currentIndex = 0;
-            showWord();
-        });
-
-        dropdown.addEventListener("change", function() {
-            const selectedFile = this.value;
-            if (selectedFile === "custom") {
-                alert("Custom word list functionality not implemented yet.");
-            } else {
-                loadWords(selectedFile);
-            }
+            dropdown.addEventListener("change", function() {
+                const selectedFile = this.value;
+                if (selectedFile === "custom") {
+                    alert("Custom word list functionality not implemented yet.");
+                } else {
+                    loadWords(selectedFile);
+                }
+            });
+            document.getElementById("toggleCyrillic").addEventListener("click", async function() {
+                console.log("Toggle Cyrillic Alphabet button clicked");
+                const alphabetContainer = document.getElementById("alphabetContainer");
+                if (alphabetContainer.style.display === "none") {
+                    const response = await fetch("cyrillic.html");
+                    const alphabetHTML = await response.text();
+                    alphabetContainer.innerHTML = alphabetHTML;
+                    alphabetContainer.style.display = "block";
+                } else {
+                    alphabetContainer.style.display = "none";
+                }
+            });
         });
 
         function pronounceWord(word) {
@@ -200,7 +219,8 @@
             soundIcon.style.cursor = "pointer";
             soundIcon.style.marginLeft = "10px";
             soundIcon.addEventListener("click", function() {
-                pronounceWord(document.getElementById("word").innerText);
+                pronounceWord(shuffledWords[currentIndex].display);
+                console.log("Pronouncing word:", shuffledWords[currentIndex].display);
             });
             pronunciationElement.appendChild(soundIcon);
         }
@@ -214,7 +234,7 @@
         // Initial shuffle and word display
         shuffledWords = shuffleArray([...words]);
         showWord();
-
+/*
         const toggleAlphabetButton = document.createElement("button");
         toggleAlphabetButton.innerText = "Toggle Cyrillic Alphabet";
         toggleAlphabetButton.style.marginTop = "20px";
@@ -225,17 +245,9 @@
         alphabetContainer.style.display = "none";
         alphabetContainer.style.marginTop = "20px";
         document.body.appendChild(alphabetContainer);
-
-        toggleAlphabetButton.addEventListener("click", async function() {
-            if (alphabetContainer.style.display === "none") {
-                const response = await fetch("cyrillic.html");
-                const alphabetHTML = await response.text();
-                alphabetContainer.innerHTML = alphabetHTML;
-                alphabetContainer.style.display = "block";
-            } else {
-                alphabetContainer.style.display = "none";
-            }
-        });
+*/
+       
+            
     </script>
 
 </body>
