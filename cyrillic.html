@@ -11,9 +11,39 @@
             margin: 0;
             padding: 20px;
         }
-        h1 {
+        .alphabet-section {
+            max-width: 1100px;
+            margin: 0 auto 24px;
+            background-color: #fff;
+            border: 1px solid #d9d9d9;
+            border-radius: 14px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+        .alphabet-toggle {
+            cursor: pointer;
+            list-style: none;
+            padding: 18px 20px;
+            font-size: 28px;
+            font-weight: bold;
             text-align: center;
             color: #333;
+            background-color: #f8f8f8;
+        }
+        .alphabet-toggle::-webkit-details-marker {
+            display: none;
+        }
+        .alphabet-toggle::after {
+            content: "+";
+            float: right;
+            font-size: 24px;
+            line-height: 1;
+        }
+        .alphabet-section[open] .alphabet-toggle::after {
+            content: "−";
+        }
+        .alphabet-content {
+            padding: 20px;
         }
         .card-container {
             display: flex;
@@ -35,6 +65,7 @@
             font-weight: bold;
             color: #333;
             margin-bottom: 10px;
+            line-height: 1.2;
         }
         .alphaCard .details {
             font-size: 12px; /* Reduced font size for details */
@@ -46,6 +77,14 @@
             margin-top: 5px;
         }
         @media (max-width: 600px) {
+            .alphabet-toggle {
+                font-size: 22px;
+                padding-right: 16px;
+                padding-left: 16px;
+            }
+            .alphabet-content {
+                padding: 16px;
+            }
             .alphaCard {
                 width: 100%;
                 font-size: 14px;
@@ -55,8 +94,10 @@
 </head>
 <body>
 
-    <h1>Cyrillic Alphabet</h1>
-    <div class="card-container">
+    <details class="alphabet-section" open>
+        <summary class="alphabet-toggle">Cyrillic Alphabet</summary>
+        <div class="alphabet-content">
+            <div class="card-container">
         <div class="alphaCard">
             <div class="letter">А</div>
             <div class="details">A</div>
@@ -222,37 +263,43 @@
             <div class="details">Ya</div>
             <div class="example">Яблоко (Apple)</div>
         </div>
-    </div>
+            </div>
+        </div>
+    </details>
 
-    <h1>Greek Alphabet</h1>
-    <div class="card-container">
+    <details class="alphabet-section" open>
+        <summary class="alphabet-toggle">Greek Alphabet</summary>
+        <div class="alphabet-content">
+            <div class="card-container">
 
-        <div class="alphaCard"><div class="letter">Α</div><div class="details">Alpha (A)</div><div class="example">Άνθρωπος (Person)</div></div>
-        <div class="alphaCard"><div class="letter">Β</div><div class="details">Beta (V)</div><div class="example">Βιβλίο (Book)</div></div>
-        <div class="alphaCard"><div class="letter">Γ</div><div class="details">Gamma (G)</div><div class="example">Γάλα (Milk)</div></div>
-        <div class="alphaCard"><div class="letter">Δ</div><div class="details">Delta (D)</div><div class="example">Δέντρο (Tree)</div></div>
-        <div class="alphaCard"><div class="letter">Ε</div><div class="details">Epsilon (E)</div><div class="example">Ελλάδα (Greece)</div></div>
-        <div class="alphaCard"><div class="letter">Ζ</div><div class="details">Zeta (Z)</div><div class="example">Ζάχαρη (Sugar)</div></div>
-        <div class="alphaCard"><div class="letter">Η</div><div class="details">Eta (I)</div><div class="example">Ημέρα (Day)</div></div>
-        <div class="alphaCard"><div class="letter">Θ</div><div class="details">Theta (Th)</div><div class="example">Θάλασσα (Sea)</div></div>
-        <div class="alphaCard"><div class="letter">Ι</div><div class="details">Iota (I)</div><div class="example">Ιδέα (Idea)</div></div>
-        <div class="alphaCard"><div class="letter">Κ</div><div class="details">Kappa (K)</div><div class="example">Καφές (Coffee)</div></div>
-        <div class="alphaCard"><div class="letter">Λ</div><div class="details">Lambda (L)</div><div class="example">Λεμόνι (Lemon)</div></div>
-        <div class="alphaCard"><div class="letter">Μ</div><div class="details">Mu (M)</div><div class="example">Μήλο (Apple)</div></div>
-        <div class="alphaCard"><div class="letter">Ν</div><div class="details">Nu (N)</div><div class="example">Νερό (Water)</div></div>
-        <div class="alphaCard"><div class="letter">Ξ</div><div class="details">Xi (X)</div><div class="example">Ξύλο (Wood)</div></div>
-        <div class="alphaCard"><div class="letter">Ο</div><div class="details">Omicron (O)</div><div class="example">Όνομα (Name)</div></div>
-        <div class="alphaCard"><div class="letter">Π</div><div class="details">Pi (P)</div><div class="example">Πόλη (City)</div></div>
-        <div class="alphaCard"><div class="letter">Ρ</div><div class="details">Rho (R)</div><div class="example">Ρύζι (Rice)</div></div>
-        <div class="alphaCard"><div class="letter">Σ</div><div class="details">Sigma (S)</div><div class="example">Σπίτι (House)</div></div>
-        <div class="alphaCard"><div class="letter">Τ</div><div class="details">Tau (T)</div><div class="example">Τσάι (Tea)</div></div>
-        <div class="alphaCard"><div class="letter">Υ</div><div class="details">Upsilon (I/Y)</div><div class="example">Ύπνος (Sleep)</div></div>
-        <div class="alphaCard"><div class="letter">Φ</div><div class="details">Phi (F)</div><div class="example">Φως (Light)</div></div>
-        <div class="alphaCard"><div class="letter">Χ</div><div class="details">Chi (H/Kh)</div><div class="example">Χέρι (Hand)</div></div>
-        <div class="alphaCard"><div class="letter">Ψ</div><div class="details">Psi (Ps)</div><div class="example">Ψωμί (Bread)</div></div>
-        <div class="alphaCard"><div class="letter">Ω</div><div class="details">Omega (O)</div><div class="example">Ωκεανός (Ocean)</div></div>
+        <div class="alphaCard"><div class="letter">Α α</div><div class="details">Alpha (A)</div><div class="example">Άνθρωπος (Person)</div></div>
+        <div class="alphaCard"><div class="letter">Β β</div><div class="details">Beta (V)</div><div class="example">Βιβλίο (Book)</div></div>
+        <div class="alphaCard"><div class="letter">Γ γ</div><div class="details">Gamma (G)</div><div class="example">Γάλα (Milk)</div></div>
+        <div class="alphaCard"><div class="letter">Δ δ</div><div class="details">Delta (D)</div><div class="example">Δέντρο (Tree)</div></div>
+        <div class="alphaCard"><div class="letter">Ε ε</div><div class="details">Epsilon (E)</div><div class="example">Ελλάδα (Greece)</div></div>
+        <div class="alphaCard"><div class="letter">Ζ ζ</div><div class="details">Zeta (Z)</div><div class="example">Ζάχαρη (Sugar)</div></div>
+        <div class="alphaCard"><div class="letter">Η η</div><div class="details">Eta (I)</div><div class="example">Ημέρα (Day)</div></div>
+        <div class="alphaCard"><div class="letter">Θ θ</div><div class="details">Theta (Th)</div><div class="example">Θάλασσα (Sea)</div></div>
+        <div class="alphaCard"><div class="letter">Ι ι</div><div class="details">Iota (I)</div><div class="example">Ιδέα (Idea)</div></div>
+        <div class="alphaCard"><div class="letter">Κ κ</div><div class="details">Kappa (K)</div><div class="example">Καφές (Coffee)</div></div>
+        <div class="alphaCard"><div class="letter">Λ λ</div><div class="details">Lambda (L)</div><div class="example">Λεμόνι (Lemon)</div></div>
+        <div class="alphaCard"><div class="letter">Μ μ</div><div class="details">Mu (M)</div><div class="example">Μήλο (Apple)</div></div>
+        <div class="alphaCard"><div class="letter">Ν ν</div><div class="details">Nu (N)</div><div class="example">Νερό (Water)</div></div>
+        <div class="alphaCard"><div class="letter">Ξ ξ</div><div class="details">Xi (X)</div><div class="example">Ξύλο (Wood)</div></div>
+        <div class="alphaCard"><div class="letter">Ο ο</div><div class="details">Omicron (O)</div><div class="example">Όνομα (Name)</div></div>
+        <div class="alphaCard"><div class="letter">Π π</div><div class="details">Pi (P)</div><div class="example">Πόλη (City)</div></div>
+        <div class="alphaCard"><div class="letter">Ρ ρ</div><div class="details">Rho (R)</div><div class="example">Ρύζι (Rice)</div></div>
+        <div class="alphaCard"><div class="letter">Σ σ</div><div class="details">Sigma (S)</div><div class="example">Σπίτι (House)</div></div>
+        <div class="alphaCard"><div class="letter">Τ τ</div><div class="details">Tau (T)</div><div class="example">Τσάι (Tea)</div></div>
+        <div class="alphaCard"><div class="letter">Υ υ</div><div class="details">Upsilon (I/Y)</div><div class="example">Ύπνος (Sleep)</div></div>
+        <div class="alphaCard"><div class="letter">Φ φ</div><div class="details">Phi (F)</div><div class="example">Φως (Light)</div></div>
+        <div class="alphaCard"><div class="letter">Χ χ</div><div class="details">Chi (H/Kh)</div><div class="example">Χέρι (Hand)</div></div>
+        <div class="alphaCard"><div class="letter">Ψ ψ</div><div class="details">Psi (Ps)</div><div class="example">Ψωμί (Bread)</div></div>
+        <div class="alphaCard"><div class="letter">Ω ω</div><div class="details">Omega (O)</div><div class="example">Ωκεανός (Ocean)</div></div>
 
-    </div>
+            </div>
+        </div>
+    </details>
 
 
 </body>
