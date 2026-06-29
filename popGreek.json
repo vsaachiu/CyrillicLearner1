@@ -1,5 +1,4 @@
 [
-    /* ABBA Songs */
     { "display": "Μαμμα Μια", "pronunciation": "Mamma Mia", "definition": "ABBA song" },
     { "display": "Ντανσινγκ Κουιν", "pronunciation": "Dancing Queen", "definition": "ABBA song" },
     { "display": "Φερναντο", "pronunciation": "Fernando", "definition": "ABBA song" },
@@ -10,8 +9,6 @@
     { "display": "Χανεϊ Χανεϊ", "pronunciation": "Honey Honey", "definition": "ABBA song" },
     { "display": "Σουπερ Τρουπερ", "pronunciation": "Super Trouper", "definition": "ABBA song" },
     { "display": "Θανκ Γιου Φορ Δε Μιουζικ", "pronunciation": "Thank You for the Music", "definition": "ABBA song" },
-
-    /* Broadway Musicals */
     { "display": "Χαμιλτον", "pronunciation": "Hamilton", "definition": "Broadway musical" },
     { "display": "Γουικεντ", "pronunciation": "Wicked", "definition": "Broadway musical" },
     { "display": "Λε Μιζεραμπλ", "pronunciation": "Les Misérables", "definition": "Broadway musical" },
@@ -32,8 +29,6 @@
     { "display": "Ανυθινγκ Γκοουζ", "pronunciation": "Anything Goes", "definition": "Broadway musical" },
     { "display": "Ματιλντα", "pronunciation": "Matilda", "definition": "Broadway musical" },
     { "display": "Σαουντ Οφ Μιουζικ", "pronunciation": "The Sound of Music", "definition": "Broadway musical" },
-
-    /* Disney / Hollywood Actors & Actresses */
     { "display": "Ζεντεγια", "pronunciation": "Zendaya", "definition": "Actress" },
     { "display": "Τομ Χολαντ", "pronunciation": "Tom Holland", "definition": "Actor" },
     { "display": "Φλορενς Πιου", "pronunciation": "Florence Pugh", "definition": "Actress" },
